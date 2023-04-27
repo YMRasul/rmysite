@@ -1,0 +1,11 @@
+{% extends 'app1/base.html' %}
+
+{% block content %}
+<h1>{{title}}</h1>
+
+{% if s.photo %}
+<p><img class="img-article-left thumb" src="{{s.photo.url}}" ></p>
+{% endif %}
+
+<p>Содержимое страницы о сайте
+{% endblock %}
