@@ -10,15 +10,17 @@ class studentsAdmin(admin.ModelAdmin):  # students должень совпада
     list_display_links = ('id', 'title')                            # поля которые мы можем кликнут
     search_fields = ('title',)                                      # поля для поиска
     list_filter = ('time_create',)                                  # поля для фильтрации
-    save_on_top = True
+    #save_on_top = True                                              # если True  наверху повторится кнопки
     #x Это функция для отображения миниатюра на админ панеле в место пути
     #x в list_display вместо 'photo' пропишем 'get_html_photo'
+    fields = ('title','cat','photo','get_html_photo','time_create')
+    readonly_fields = ('time_create','get_html_photo')
     def get_html_photo(self,object):
         if object.photo:
             return mark_safe(f"<img src='{object.photo.url}' width=50>")
 
     get_html_photo.short_description = "Миниатюра"
-    #x
+
 class categAdmin(admin.ModelAdmin):
     list_display = ('id','name')
     list_display_links = ('id','name')
@@ -29,3 +31,5 @@ class categAdmin(admin.ModelAdmin):
 admin.site.register(students, studentsAdmin)  # students да туриб  <Alt>+<Enter> ни боссак import чикади
 admin.site.register(categ,categAdmin)
 #
+admin.site.site_title = 'Админ панель сайта'                  # из  mywork/templates/base_site.htm переопределили
+admin.site.site_header = 'Админ панель сайта однакурсников'   # site_title   и site_header

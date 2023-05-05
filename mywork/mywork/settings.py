@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'asdaasdasdasd'
+SECRET_KEY=''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -47,7 +47,7 @@ ROOT_URLCONF = 'mywork.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')], # 'Это для того чтобы в админ панеле base_site.html отсюда бралось
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,7 +72,18 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+'''
+DATABASES = {
+    'default': {
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': 'matfak82db',
+    'USER': 'matfak82',
+    'PASSWORD': 'rasul_matfak82_sbdfjok'
+    'HOST': 'localhost',
+    'PORT': '5432',
+    }
+}
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -107,9 +118,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 # для статических файлов добавляем и в app1 создадим папку static
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_ROOT = os.path.join(BASE_DIR,'static/')
 #print("---------------",STATIC_ROOT)
 STATICFILES_DIRS = []      # для нестандартных
 
@@ -118,8 +129,8 @@ STATICFILES_DIRS = []      # для нестандартных
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField' # Добавлено в версии 4.0
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-MEDIA_URL ='/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
+MEDIA_URL ='media/'
 # для эмуляции реального сервера в отладочном режиме
 # в mywork.urls.py  добавим сточку [n3]
 #
