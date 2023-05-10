@@ -14,7 +14,7 @@ def index(request):
         'stdns': stdns,
         'cats': cats,
         'menu': menu,
-        'title': 'Главная страница',
+        'title': 'ТашГУ матфак82',
         'cat_selected': 0,
     }
     # AAA return render(request, 'app1/index.html', {'stdns': stdns, 'menu': menu, 'title': 'Главная страница'})
@@ -30,7 +30,7 @@ def show_category(request,cat_id):
             'stdns': stdns,
             'cats': cats,
             'menu': menu,
-            'title': 'Главная страница',
+            'title': 'ТашГУ матфак82',
             'cat_selected': cat_id,
     }
     return render(request, 'app1/index.html', context=cntxt)
