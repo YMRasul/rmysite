@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-
+from django.core.validators import FileExtensionValidator
 class students(models.Model):
     title = models.CharField(max_length=255,verbose_name="Заголовок")  # ,второй аргумент используется Админ панеле
     photo = models.ImageField(upload_to="photos/%Y/%m/%d",verbose_name="Фото")
@@ -36,3 +36,25 @@ class categ(models.Model):
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'   # Множественное число
         ordering = ['id']
+
+#=====================================================
+class video(models.Model):
+    title = models.CharField(max_length=255,verbose_name="Заголовок")  # ,второй аргумент используется Админ панеле
+    videofile = models.FileField(
+        upload_to= 'video/',verbose_name='Видео',validators=[FileExtensionValidator(allowed_extensions=['mp4'])]
+    )
+    time_create = models.DateTimeField(auto_now_add=True,verbose_name="Время создания")
+    time_update = models.DateTimeField(auto_now=True,verbose_name="Время Изменения")
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Видео'
+        verbose_name_plural = 'Видео' # Множественное число
+        ordering = ['time_create', 'title']
+
+#    class meta:                                    #  TODO Шу
+#        verbose_name = u'Фотографии'                #  ишламаяпти  (Meta булиши керак экан (meta эмас))
+#        verbose_name_plural = 'Фотографии'         # Админ панелида Students чикяпти
+#        ordering = ['time_create','title']         # 'Фотографии однакурсников' чикиши керак эди

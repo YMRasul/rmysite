@@ -4,7 +4,10 @@ from .models import students,categ
 
 # AAA menu = ["О сайте", "Добавить", "Обратная связь", "Войти"]
 
-menu = [{'title': "О сайте",        'url_name': 'about'}]  # Это после добавление 'Регистрация|Войти' в файле base.html
+menu = [
+    {'title': "Видео",'url_name': 'video'},
+    {'title': "О сайте", 'url_name': 'about'}
+]  # Это после добавление 'Регистрация|Войти' в файле base.html
 
 def index(request):
     #stdns = students.objects.all()        # Все фотографии
@@ -35,6 +38,8 @@ def show_category(request,cat_id):
     }
     return render(request, 'app1/index.html', context=cntxt)
 #
+def video(request):
+    return render(request, 'app1/video.html', {'menu': menu, 'title': 'Видеолар'})
 def about(request):
     return render(request, 'app1/about.html', {'menu': menu, 'title': 'О сайте'})
 
